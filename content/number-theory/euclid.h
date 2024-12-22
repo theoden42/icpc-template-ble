@@ -9,7 +9,19 @@
 #pragma once
 
 ll euclid(ll a, ll b, ll &x, ll &y) {
-	if (!b) return x = 1, y = 0, a;
-	ll d = euclid(b, a % b, y, x);
-	return y -= a/b * x, d;
+  if (!b)
+    return x = 1, y = 0, a;
+  ll d = euclid(b, a % b, y, x);
+  return y -= a / b * x, d;
+}
+
+ll generalized_mod_inverse(ll a, ll m) {
+  ll x, y;
+  int g = euclid(a, m, x, y);
+  if (g != 1) {
+    return -1;
+  } else {
+    x = (x % m + m) % m;
+    return x;
+  }
 }
